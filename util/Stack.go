@@ -1,39 +1,39 @@
 package util
 
-type stack struct {
+type arrayStack struct {
 	data *myArray
 }
 
-func Stack(cap int) *stack {
-	return &stack{
+func ArrayStack(cap int) *arrayStack {
+	return &arrayStack{
 		data: MyArray(cap),
 	}
 }
 
-func (this *stack) GetSize() int {
+func (this *arrayStack) GetSize() int {
 	return this.data.GetSize()
 }
 
-func (this *stack) IsEmpty() bool {
+func (this *arrayStack) IsEmpty() bool {
 	return this.data.IsEmpty()
 }
 
-func (this *stack) GetCapacity() int {
+func (this *arrayStack) GetCapacity() int {
 	return this.data.GetCapacity()
 }
 
-func (this *stack) Push(e E) {
+func (this *arrayStack) Push(e E) {
 	this.data.AddLast(e)
 }
 
-func (this *stack) Pop() E {
+func (this *arrayStack) Pop() E {
 	return this.data.RemoveLast()
 }
 
-func (this *stack) Peek() E {
+func (this *arrayStack) Peek() E {
 	return this.data.GetLast()
 }
 
-func (this *stack) ToString() {
+func (this *arrayStack) ToString() {
 	this.data.ToString()
 }

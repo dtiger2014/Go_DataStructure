@@ -3,10 +3,11 @@ package functions
 import(
 	util "util"
 	"fmt"
+	"time"
 )
 
 func TestStack() {
-	stack := util.Stack(10)
+	stack := util.ArrayStack(10)
 
 	for i := 0; i < 5; i++ {
 		stack.Push(i)
@@ -17,8 +18,25 @@ func TestStack() {
 	stack.ToString()
 }
 
+func ArrayStackEfficiency(cnt int) {
+	start := time.Now()
+	// loopqueue ---
+	stack := util.ArrayStack(10)
+	
+	for i := 0; i < cnt; i++ {
+		stack.Push(i)
+	}
+
+	for i := 0; i < cnt; i++ {
+		stack.Pop()	
+	}
+	// -----------
+	useTime := time.Since(start)
+	fmt.Println("ArrayStack Use time : ", useTime)
+}
+
 func TestStack2(s string) bool {
-	stack := util.Stack(20)
+	stack := util.ArrayStack(20)
 
 	for _, v := range s {
 		c := string(v)
