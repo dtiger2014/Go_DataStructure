@@ -2,7 +2,6 @@ package main
 
 import(
 	funcs "DataStructure/functions"
-	// "fmt"
 )
 
 func main() {
@@ -34,6 +33,9 @@ func main() {
 
 	// Test: test efficiency--------
 	// testEfficiency()
+	
+	// Test: Recursion - Sum
+	funcs.TestSum()
 }
 
 func testEfficiency() {
@@ -90,4 +92,52 @@ func removeElements(head *ListNode, val int) *ListNode {
 		}
 	}
 	return head
+}
+
+func removeElements2(head *ListNode, val int) *ListNode {
+    for head != nil && head.Val == val {
+		head = head.Next
+	}
+
+	if head == nil {
+		return head
+	}
+
+	prev := head;
+	for prev.Next != nil {
+		if prev.Next.Val == val {
+			prev.Next = prev.Next.Next
+		} else {
+			prev = prev.Next
+		}
+	}
+	return head
+}
+
+func removeElements3(head *ListNode, val int) *ListNode {
+	dummyHead := &ListNode{nil, -1}
+	dummyHead.Next = head
+
+	prev := dummyHead
+	for prev.Next != nil {
+		if prev.Next.Val == val {
+			prev.Next = prev.Next.Next
+		} else {
+			prev = prev.Next
+		}
+	}
+	return dummyHead.Next
+}
+
+// 递归方法：
+func removeElements4(head *ListNode, val int) *ListNode{
+	if head == nil {
+		return head
+	}
+	head.Next = removeElements4(head.Next, val)
+	if head.Val == val {
+		return head.Next
+	} else {
+		return head
+	}
 }
