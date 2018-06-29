@@ -35,7 +35,9 @@ func main() {
 	// testEfficiency()
 	
 	// Test: Recursion - Sum
-	funcs.TestSum()
+	// funcs.TestSum()
+
+	
 }
 
 func testEfficiency() {
