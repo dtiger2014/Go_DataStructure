@@ -6,6 +6,20 @@ import(
 )
 
 func main(){
+	algoTest2()
+}
+
+func algoTest2() {
+	n := 8;
+	arr11 := sort.GenerateRandomArray(n, 0, n)
+	arr12 := sort.CopyArray(arr11)
+
+	fmt.Println(arr12)
+	// sort.TestSort("ShellSort", sort.ShellSort, arr11, n)
+	sort.TestSort("MergeSort", sort.MergeSort, arr12, n)
+}
+
+func alogoTest1() {
 	n := 20000;
 
 	arr11 := sort.GenerateRandomArray(n, 0, n)
