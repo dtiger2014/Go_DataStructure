@@ -28,3 +28,15 @@ func InsertionSort(arr []int, n int) {
 		arr[j] = e
 	}
 }
+
+// 对arr[l...r]范围的数组进行插入排序
+func InsertionSortLR(arr []int, l, r int) {
+	for i := l+1; i <= r; i++ {
+		e := arr[i]
+		var j int
+		for j = i; j > l && arr[j-1] > e; j-- {
+			arr[j] = arr[j-1]
+		}
+		arr[j] = e
+	}
+}

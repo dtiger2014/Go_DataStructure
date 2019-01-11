@@ -6,17 +6,87 @@ import(
 )
 
 func main(){
-	algoTest2()
+	// algoTest1()
+	// algoTest2()
+	// algoTest_quick()
+}
+
+func algoTest_quick() {
+
+	// n = 1000000;
+	// Merge Sort 2      : 323ms s
+	// Quick Sort        : 102ms s
+	// Quick Sort 2 Ways : 94ms s
+	// Quick Sort 3 Ways : 110ms s
+
+	// Merge Sort 2      : 183ms s
+	// Quick Sort        : 58ms s
+	// Quick Sort 2 Ways : 51ms s
+	// Quick Sort 3 Ways : 75ms s
+
+	// Merge Sort 2      : 250ms s
+	// Quick Sort 2 Ways : 32ms s
+	// Quick Sort 3 Ways : 11ms s
+	
+	n := 1000000;
+	arr11 := sort.GenerateRandomArray(n, 0, n)
+	arr12 := sort.CopyArray(arr11)
+	arr13 := sort.CopyArray(arr11)
+	arr14 := sort.CopyArray(arr11)
+
+	sort.TestSort("Merge Sort 2     ", sort.MergeSort2, arr11, n)
+	sort.TestSort("Quick Sort       ", sort.QuickSort, arr12, n)
+	sort.TestSort("Quick Sort 2 Ways", sort.QuickSort2Ways, arr13, n)
+	sort.TestSort("Quick Sort 3 Ways", sort.QuickSort3Ways, arr14, n)
+
+	fmt.Println()
+
+	arr31 := sort.GenerateNearlyOrderedArray(n, 100)
+	arr32 := sort.CopyArray(arr31)
+	arr33 := sort.CopyArray(arr31)
+	arr34 := sort.CopyArray(arr31)
+	
+	sort.TestSort("Merge Sort 2     ", sort.MergeSort2, arr31, n)
+	sort.TestSort("Quick Sort       ", sort.QuickSort, arr32, n)
+	sort.TestSort("Quick Sort 2 Ways", sort.QuickSort2Ways, arr33, n)
+	sort.TestSort("Quick Sort 3 Ways", sort.QuickSort3Ways, arr34, n)
+
+	fmt.Println()
+	
+	arr21 := sort.GenerateRandomArray(n, 0, 3)
+	// arr22 := sort.CopyArray(arr21)
+	arr23 := sort.CopyArray(arr21)
+	arr24 := sort.CopyArray(arr21)
+
+	sort.TestSort("Merge Sort 2     ", sort.MergeSort2, arr21, n)
+	// sort.TestSort("Quick Sort", sort.QuickSort, arr22, n)
+	sort.TestSort("Quick Sort 2 Ways", sort.QuickSort2Ways, arr23, n)
+	sort.TestSort("Quick Sort 3 Ways", sort.QuickSort3Ways, arr24, n)
 }
 
 func algoTest2() {
-	n := 8;
+	n := 1000000;
 	arr11 := sort.GenerateRandomArray(n, 0, n)
 	arr12 := sort.CopyArray(arr11)
+	arr13 := sort.CopyArray(arr11)
+	arr14 := sort.CopyArray(arr11)
 
-	fmt.Println(arr12)
-	// sort.TestSort("ShellSort", sort.ShellSort, arr11, n)
-	sort.TestSort("MergeSort", sort.MergeSort, arr12, n)
+	sort.TestSort("Insertion Sort", sort.InsertionSort, arr11, n)
+	sort.TestSort("Merge Sort", sort.MergeSort, arr12, n)
+	sort.TestSort("Merge Sort 2", sort.MergeSort2, arr13, n)
+	sort.TestSort("Merge Sort Bottom Up", sort.MergeSortBU, arr14, n)
+
+	fmt.Println()
+
+	arr31 := sort.GenerateNearlyOrderedArray(n, 100)
+	arr32 := sort.CopyArray(arr31)
+	arr33 := sort.CopyArray(arr31)
+	arr34 := sort.CopyArray(arr31)
+
+	sort.TestSort("Insertion Sort", sort.InsertionSort, arr31, n)
+	sort.TestSort("Merge Sort", sort.MergeSort, arr32, n)
+	sort.TestSort("Merge Sort 2", sort.MergeSort2, arr33, n)
+	sort.TestSort("Merge Sort Bottom Up", sort.MergeSortBU, arr34, n)
 }
 
 func alogoTest1() {
