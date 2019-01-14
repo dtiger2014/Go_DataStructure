@@ -2,13 +2,34 @@ package main
 
 import(
 	sort "algo_sort"
+	ds "data_struct"
 	"fmt"
+	"math/rand"
+	"time"
 )
+
+func init(){
+    //以时间作为初始化种子
+    rand.Seed(time.Now().UnixNano())
+}
 
 func main(){
 	// algoTest1()
 	// algoTest2()
 	// algoTest_quick()
+
+	dataStruct()
+}
+
+func dataStruct() {
+	n := 10
+	mh := ds.NewMaxHeap(n)
+	for i := 0; i < n; i++ {
+		randIndex := rand.Intn(100)
+		mh.Insert(randIndex)
+	}
+
+	mh.Print()
 }
 
 func algoTest_quick() {
