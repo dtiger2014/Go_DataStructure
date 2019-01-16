@@ -18,6 +18,21 @@ func NewMaxHeap(capacity int) *MaxHeap{
 	}
 }
 
+func MaxHeapify(arr []int, n int) *MaxHeap {
+	mh := NewMaxHeap(n + 1)
+
+	for i := 0; i < n; i++ {
+		mh.data[i+1] = arr[i]
+	}
+	mh.count = n
+
+	for i := mh.count/2; i >= 1; i-- {
+		mh.shiftDown(i)
+	}
+
+	return mh
+}
+
 func (this *MaxHeap) Size() int {
 	return this.count
 }
@@ -84,11 +99,11 @@ func (this *MaxHeap) shiftDown(k int) {
 			break
 		}
 
-		j := 2 * k
+		j := 2 * k // 在此轮循环中,data[k]和data[j]交换位置
 		if j+1 <= this.count && this.data[j+1] > this.data[j] {
 			j++
 		}
-
+		// data[j] 是 data[2*k]和data[2*k+1]中的最大值
 		if this.data[k] >= this.data[j] {
 			break
 		}
