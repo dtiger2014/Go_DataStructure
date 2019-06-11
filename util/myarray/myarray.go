@@ -70,6 +70,13 @@ func (arr *ArrayData) Get(index int) (interface{}, error) {
 	return arr.data[index], nil
 }
 
+func (arr *ArrayData) GetFirst() (interface{}, error) {
+	return arr.Get(0)
+}
+func (arr *ArrayData) GetLast() (interface{}, error) {
+	return arr.Get(arr.size - 1)
+}
+
 func (arr *ArrayData) Set(index int, e interface{}) error {
 	if index < 0 || index > arr.size {
 		return errors.New("Set failed. Index is illegal.")
