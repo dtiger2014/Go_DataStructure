@@ -5,6 +5,7 @@ import (
 	"golang-datastruct/util/array"
 	"golang-datastruct/util/arrayqueue"
 	"golang-datastruct/util/arraystack"
+	"golang-datastruct/util/linkedlist"
 	"golang-datastruct/util/loopqueue"
 )
 
@@ -12,7 +13,8 @@ func main() {
 	// TestArray()
 	// TestMyArrayStack()
 	// TestArrayQueue()
-	TestLoopQueue()
+	// TestLoopQueue()
+	TestLinkedList()
 
 	// var v interface{}
 	// v = 1
@@ -26,6 +28,26 @@ func main() {
 	// 	_ = t
 	// 	fmt.Println("unkown")
 	// }
+}
+
+func TestLinkedList() {
+	l := linkedlist.New()
+	for i := 0; i < 5; i++ {
+		l.AddFirst(i)
+		fmt.Println(l)
+	}
+
+	l.Add(2, 666)
+	fmt.Println(l)
+
+	l.Remove(2)
+	fmt.Println(l)
+
+	l.RemoveFirst()
+	fmt.Println(l)
+
+	l.RemoveLast()
+	fmt.Println(l)
 }
 
 func TestLoopQueue() {
