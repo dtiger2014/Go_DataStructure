@@ -1,13 +1,9 @@
-package myarray
+package array
 
 import (
 	"errors"
 	"fmt"
-)
-
-const (
-	// DefaultCap : 默认数组容量
-	DefaultCap = 10
+	"golang-datastruct/util/common"
 )
 
 // ArrayData : 动态数组 struct
@@ -16,28 +12,33 @@ type ArrayData struct {
 	size int
 }
 
+// New : 创建初始化，并返回Array
 func New() *ArrayData {
 	return &ArrayData{
-		data: make([]interface{}, DefaultCap, DefaultCap),
+		data: make([]interface{}, common.DefaultCap, common.DefaultCap),
 		size: 0,
 	}
 }
 
+// GetCapacity : 获取Capacity
 func (arr *ArrayData) GetCapacity() int {
 	return cap(arr.data)
 }
 
+// GetSize : 获取Size
 func (arr *ArrayData) GetSize() int {
 	return arr.size
 }
 
+// IsEmpty : 判断是否为空
 func (arr *ArrayData) IsEmpty() bool {
 	return arr.size == 0
 }
 
+// Add : 添加元素
 func (arr *ArrayData) Add(index int, e interface{}) error {
 	if index < 0 || index > arr.size {
-		return errors.New("Add failed. Require index >= 0 and index <= size.")
+		return errors.New("Add failed. Require index >= 0 and index <= size")
 	}
 
 	if arr.size == cap(arr.data) {
@@ -54,32 +55,39 @@ func (arr *ArrayData) Add(index int, e interface{}) error {
 	return nil
 }
 
+// AddLast : 添加元素 Last
 func (arr *ArrayData) AddLast(e interface{}) {
 	arr.Add(arr.size, e)
 }
 
+// AddFirst : 添加元素 First
 func (arr *ArrayData) AddFirst(e interface{}) {
 	arr.Add(0, e)
 }
 
+// Get : 获取元素
 func (arr *ArrayData) Get(index int) (interface{}, error) {
 	if index < 0 || index > arr.size {
-		return nil, errors.New("Get failed. Index is illegal.")
+		return nil, errors.New("Get failed. Index is illegal")
 	}
 
 	return arr.data[index], nil
 }
 
+// GetFirst : 获取元素 First
 func (arr *ArrayData) GetFirst() (interface{}, error) {
 	return arr.Get(0)
 }
+
+// GetLast : 获取元素 Last
 func (arr *ArrayData) GetLast() (interface{}, error) {
 	return arr.Get(arr.size - 1)
 }
 
+// Set : 设置元素
 func (arr *ArrayData) Set(index int, e interface{}) error {
 	if index < 0 || index > arr.size {
-		return errors.New("Set failed. Index is illegal.")
+		return errors.New("Set failed. Index is illegal")
 	}
 
 	arr.data[index] = e
@@ -87,6 +95,7 @@ func (arr *ArrayData) Set(index int, e interface{}) error {
 	return nil
 }
 
+// Contains : 判断数组是否包含目标元素
 func (arr *ArrayData) Contains(e interface{}) bool {
 	for i := 0; i < arr.size; i++ {
 		if arr.data[i] == e {
@@ -96,6 +105,7 @@ func (arr *ArrayData) Contains(e interface{}) bool {
 	return false
 }
 
+// Find : 返回目标元素下标，无 返回 -1
 func (arr *ArrayData) Find(e interface{}) int {
 	for i := 0; i < arr.size; i++ {
 		if arr.data[i] == e {
@@ -105,9 +115,10 @@ func (arr *ArrayData) Find(e interface{}) int {
 	return -1
 }
 
+// Remove : 删除元素
 func (arr *ArrayData) Remove(index int) (interface{}, error) {
 	if index < 0 || index >= arr.size {
-		return nil, errors.New("Remove failed. Index is illegal.")
+		return nil, errors.New("Remove failed. Index is illegal")
 	}
 
 	ret := arr.data[index]
@@ -125,14 +136,17 @@ func (arr *ArrayData) Remove(index int) (interface{}, error) {
 	return ret, nil
 }
 
+// RemoveFirst : 删除元素 First
 func (arr *ArrayData) RemoveFirst() (interface{}, error) {
 	return arr.Remove(0)
 }
 
+// RemoveLast : 删除元素 Last
 func (arr *ArrayData) RemoveLast() (interface{}, error) {
-	return arr.Remove(len(arr.data))
+	return arr.Remove(arr.size - 1)
 }
 
+// RemoveElement : 删除目标元素
 func (arr *ArrayData) RemoveElement(e interface{}) {
 	index := arr.Find(e)
 	if index != 1 {
@@ -140,6 +154,7 @@ func (arr *ArrayData) RemoveElement(e interface{}) {
 	}
 }
 
+// String : 格式化输出
 func (arr *ArrayData) String() string {
 	str := fmt.Sprintf("Array: size = %d , capacity = %d\n", arr.size, cap(arr.data))
 	str += "["
@@ -154,6 +169,7 @@ func (arr *ArrayData) String() string {
 	return str
 }
 
+// resize : 扩/缩 容
 func (arr *ArrayData) resize(newCapacity int) {
 	newArr := make([]interface{}, newCapacity, newCapacity)
 	for i := 0; i < arr.size; i++ {
