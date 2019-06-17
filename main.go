@@ -5,6 +5,7 @@ import (
 	"golang-datastruct/util/array"
 	"golang-datastruct/util/arrayqueue"
 	"golang-datastruct/util/arraystack"
+	"golang-datastruct/util/bst"
 	"golang-datastruct/util/linkedlist"
 	"golang-datastruct/util/loopqueue"
 )
@@ -14,7 +15,8 @@ func main() {
 	// TestMyArrayStack()
 	// TestArrayQueue()
 	// TestLoopQueue()
-	TestLinkedList()
+	// TestLinkedList()
+	TestBST()
 
 	// var v interface{}
 	// v = 1
@@ -28,6 +30,26 @@ func main() {
 	// 	_ = t
 	// 	fmt.Println("unkown")
 	// }
+}
+
+func TestBST() {
+	bst := bst.New()
+	num := []int{5, 3, 6, 8, 4, 2}
+	for _, v := range num {
+		bst.Add(v)
+	}
+
+	bst.PreOrder()
+
+	fmt.Println()
+
+	bst.InOrder()
+
+	fmt.Println()
+
+	bst.PostOrder()
+
+	// fmt.Println(bst)
 }
 
 func TestLinkedList() {

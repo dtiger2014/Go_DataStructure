@@ -65,6 +65,19 @@ func (arr *ArrayData) AddFirst(e interface{}) {
 	arr.Add(0, e)
 }
 
+// Swap：
+func (arr *ArrayData) Swap(i, j int) error {
+	if i < 0 ||
+		i >= arr.size ||
+		j < 0 ||
+		j >= arr.size {
+		return errors.New("Index is illegal")
+	}
+
+	arr.data[i], arr.data[j] = arr.data[j], arr.data[i]
+	return nil
+}
+
 // Get : 获取元素
 func (arr *ArrayData) Get(index int) (interface{}, error) {
 	if index < 0 || index > arr.size {
